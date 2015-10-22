@@ -1,8 +1,6 @@
 package my_code;
 
 import org.apache.lucene.analysis.Analyzer;
-//import org.apache.lucene.analysis.standard.StandardAnalyzer;
-//import org.apache.lucene.analysis.ro.RomanianAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.LongField;
@@ -28,7 +26,6 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Date;
 
-//import org.apache.lucene.document.Document;
 
 /** Index all text files under a directory.
  * <p>
@@ -48,6 +45,7 @@ public class MyIndexFiles {
     String indexPath = "index";
     String docsPath = null;
     boolean create = true;
+
     for(int i=0;i<args.length;i++) {
       if ("-index".equals(args[i])) {
         indexPath = args[i+1];
