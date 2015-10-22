@@ -65,7 +65,9 @@ public class MyIndexFiles {
 
     final Path docDir = Paths.get(docsPath);
     if (!Files.isReadable(docDir)) {
-      System.out.println("Document directory '" +docDir.toAbsolutePath()+ "' does not exist or is not readable, please check the path");
+      System.out.println("Document directory '" + 
+                         docDir.toAbsolutePath()+ 
+                         "' does not exist or is not readable, please check the path");
       System.exit(1);
     }
     
@@ -174,7 +176,9 @@ public class MyIndexFiles {
       // so that the text of the file is tokenized and indexed, but not stored.
       // Note that FileReader expects the file to be in UTF-8 encoding.
       // If that's not the case searching for special characters will fail.
-      doc.add(new TextField("contents", new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8)))); 
+      doc.add(new TextField("contents", 
+                            new BufferedReader(new InputStreamReader(stream, 
+                                                                     StandardCharsets.UTF_8)))); 
       
       if (writer.getConfig().getOpenMode() == OpenMode.CREATE) {
         // New index, so we just add the document (no old document can be there):
