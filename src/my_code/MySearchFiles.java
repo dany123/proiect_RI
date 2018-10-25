@@ -184,44 +184,45 @@ public class MySearchFiles {
         break;
       }
 
-      if (numTotalHits >= end) {
-        boolean quit = false;
-        while (true) {
-          System.out.print("Press ");
-          if (start - hitsPerPage >= 0) {
-            System.out.print("(p)revious page, ");  
-          }
-          if (start + hitsPerPage < numTotalHits) {
-            System.out.print("(n)ext page, ");
-          }
-          System.out.println("(q)uit or enter number to jump to a page.");
+      if (numTotalHits < end) {
+        return;
+      }
+
+      boolean quit = false;
+      while (true) {
+        System.out.print("Press ");
+        if (start - hitsPerPage >= 0) {
+          System.out.print("(p)revious page, ");  
+        }
+        if (start + hitsPerPage < numTotalHits) {
+          System.out.print("(n)ext page, ");
+        }
+        System.out.println("(q)uit or enter number to jump to a page.");
           
-          String line = in.readLine();
-          if (line.length() == 0 || line.charAt(0)=='q') {
-            quit = true;
-            break;
+        String line = in.readLine();
+        if (line.length() == 0 || line.charAt(0)=='q') {
+          quit = true;
+          break;
+        }
+        if (line.charAt(0) == 'p') {
+          start = Math.max(0, start - hitsPerPage);
+          break;
+        } else if (line.charAt(0) == 'n') {
+          if (start + hitsPerPage < numTotalHits) {
+            start+=hitsPerPage;
           }
-          if (line.charAt(0) == 'p') {
-            start = Math.max(0, start - hitsPerPage);
-            break;
-          } else if (line.charAt(0) == 'n') {
-            if (start + hitsPerPage < numTotalHits) {
-              start+=hitsPerPage;
-            }
+          break;
+        } else {
+          int page = Integer.parseInt(line);
+          if ((page - 1) * hitsPerPage < numTotalHits) {
+            start = (page - 1) * hitsPerPage;
             break;
           } else {
-            int page = Integer.parseInt(line);
-            if ((page - 1) * hitsPerPage < numTotalHits) {
-              start = (page - 1) * hitsPerPage;
-              break;
-            } else {
-              System.out.println("No such page");
-            }
+            System.out.println("No such page");
           }
         }
-        if (quit) break;
-        end = Math.min(numTotalHits, start + hitsPerPage);
       }
-    }
+      if (quit) break;
+      end = Math.min(numTotalHits, start + hitsPerPage);
   }
 }
