@@ -136,8 +136,9 @@ public class MySearchFiles {
   public static void doPagingSearch(BufferedReader in, IndexSearcher searcher, Query query, 
                                      int hitsPerPage, boolean raw, boolean interactive) throws IOException {
  
-    // Collect enough docs to show 5 pages
-    TopDocs results = searcher.search(query, 5 * hitsPerPage);
+    final int numPages = 5; 
+    // Collect enough docs to show numPages pages
+    TopDocs results = searcher.search(query, numPages * hitsPerPage);
     ScoreDoc[] hits = results.scoreDocs;
     
     int numTotalHits = results.totalHits;
