@@ -97,13 +97,8 @@ public class MySearchFiles {
         break;
       }
       
-      
-      
-      
       Query query = parser.parse(line);
       System.out.println("Searching for: " + query.toString(field));
-      
-      //System.out.println("line: "+ ASCIIFoldingFilter();
       
       if (repeat > 0) {                           // repeat & time as benchmark
         Date start = new Date();
@@ -135,7 +130,6 @@ public class MySearchFiles {
    */
   public static void doPagingSearch(BufferedReader in, IndexSearcher searcher, Query query, 
                                      int hitsPerPage, boolean raw, boolean interactive) throws IOException {
- 
     final int numPages = 5; 
     // Collect enough docs to show numPages pages
     TopDocs results = searcher.search(query, numPages * hitsPerPage);
