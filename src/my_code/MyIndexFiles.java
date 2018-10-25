@@ -108,9 +108,7 @@ public class MyIndexFiles {
 
       writer.close();
 
-      Date end = new Date();
-      System.out.println(end.getTime() - start.getTime() + " total milliseconds");
-
+      System.out.println((new Date()).getTime() - start.getTime() + " total milliseconds");
     } catch (IOException e) {
       System.out.println(" caught a " + e.getClass() +
        "\n with message: " + e.getMessage());
